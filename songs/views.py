@@ -20,4 +20,4 @@ class SongView(ListCreateAPIView, PageNumberPagination):
         return Song.objects.filter(album_id=self.kwargs["pk"])
 
     def perform_create(self, serializer):
-        return serializer.save(album_id=self.kwargs.get("pk"))
+        return serializer.save(album_id=self.kwargs["pk"])
