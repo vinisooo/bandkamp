@@ -4,6 +4,7 @@ from .models import Song
 from rest_framework.pagination import PageNumberPagination
 from .serializers import SongSerializer
 from rest_framework.generics import ListCreateAPIView
+from django.shortcuts import get_list_or_404
 
 
 class SongView(ListCreateAPIView, PageNumberPagination):
@@ -14,7 +15,7 @@ class SongView(ListCreateAPIView, PageNumberPagination):
     serializer_class = SongSerializer
 
     def get_queryset(self):
-        return Song.objects.filter(album_id=self.kwargs["pk"])
+        return get_list_or_404(Song, album_id=self.kwargs["pk"])
 
     def perform_create(self, serializer):
         return serializer.save(album_id=self.kwargs["pk"])
