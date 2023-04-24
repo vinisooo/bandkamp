@@ -26,11 +26,9 @@ urlpatterns = [
     path("api/", include("users.urls")),
     path("api/", include("albums.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
-    # Opcionais (escolha 1)
     path(
         "api/docs/swagger-ui/",
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
-    # path("api/", include("songs.urls")),
 ]
